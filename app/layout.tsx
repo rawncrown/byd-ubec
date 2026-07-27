@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Find the BYD that fits your life.",
     description: "Explore the Philippine BYD range with personal assistance from Ron Corona at BYD IL Corso.",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "BYD IL Corso with Ron Corona" }],
+    images: [{ url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"}/og.png`, width: 1200, height: 630, alt: "BYD IL Corso with Ron Corona" }],
   },
-  twitter: { card: "summary_large_image", images: ["/og.png"] },
+  twitter: { card: "summary_large_image", images: [`${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"}/og.png`] },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
