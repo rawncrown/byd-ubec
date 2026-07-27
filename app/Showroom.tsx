@@ -15,8 +15,8 @@ type HeroSlide = {
 type SiteContent = { heroSlides: HeroSlide[] };
 
 const defaultHeroSlides: HeroSlide[] = [
-  { eyebrow: "Coming soon to BYD Cebu", title: "Meet the all-new", accent: "BYD ATTO 2.", description: "A compact electric SUV designed for effortless city driving, smart everyday comfort and the confidence of BYD Blade Battery technology.", model: "BYD ATTO 2", detail: "Compact electric SUV · Upcoming launch", image: "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/atto2.webp" },
-  { eyebrow: "Coming soon to BYD Cebu", title: "Discover the new", accent: "BYD SEAL 5.", description: "The next generation of BYD's practical Super DM-i sedan—made for efficient daily journeys and comfortable long-distance travel.", model: "New BYD SEAL 5 DM-i", detail: "Essential & Dynamic · Upcoming launch", image: "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/new_seal5.webp" },
+  { eyebrow: "Coming soon to BYD Cebu", title: "Discover the all-new", accent: "BYD ATTO 2.", description: "A compact electric SUV designed for effortless city driving, smart everyday comfort and the confidence of BYD Blade Battery technology.", model: "BYD ATTO 2", detail: "Compact electric SUV · Upcoming launch", image: "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/atto2.webp" },
+  { eyebrow: "Coming soon to BYD Cebu", title: "Discover the all-new", accent: "BYD SEAL 5.", description: "The next generation of BYD's practical Super DM-i sedan—made for efficient daily journeys and comfortable long-distance travel.", model: "New BYD SEAL 5 DM-i", detail: "Essential & Dynamic · Upcoming launch", image: "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/new_seal5.webp" },
 ];
 
 type Vehicle = {
@@ -176,7 +176,7 @@ export default function Showroom() {
       <section className="hero" id="top">
         <div className="hero-copy">
           <p className="eyebrow">{hero.eyebrow}</p>
-          <h1>{hero.title}<br /><em>{hero.accent}</em></h1>
+          <h1><span>{hero.title}</span><br /><em>{hero.accent}</em></h1>
           <p className="hero-intro">{hero.description}</p>
           <div className="hero-actions"><a className="button primary" href="#models">Explore 13 models</a><a className="text-link" href="#proposal">Request a proposal <span>→</span></a></div>
           <div className="trust-row"><span><b>01</b> Verified PH lineup</span><span><b>02</b> Clear, useful specs</span><span><b>03</b> Personal assistance</span></div>
