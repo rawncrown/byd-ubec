@@ -110,10 +110,28 @@ export default function Showroom() {
     setSubmitError("");
     const form = e.currentTarget;
     const data = new FormData(form);
+    if (String(data.get("company_website") ?? "").trim()) {
+      setSubmitted(true);
+      setSubmitting(false);
+      return;
+    }
+    const mobileDigits = String(data.get("mobile") ?? "").replace(/\D/g, "");
+    const validMobile = (mobileDigits.length === 11 && mobileDigits.startsWith("09")) || (mobileDigits.length === 12 && mobileDigits.startsWith("639"));
+    if (!validMobile) {
+      setSubmitError("Please enter a valid Philippine mobile number, such as 0917 123 4567.");
+      setSubmitting(false);
+      return;
+    }
+    const lastSubmission = Number(localStorage.getItem("bydLastQuotationRequest") ?? 0);
+    if (Date.now() - lastSubmission < 60_000) {
+      setSubmitError("A request was just sent from this device. Please wait one minute before trying again.");
+      setSubmitting(false);
+      return;
+    }
     const payload = {
       "Full name": data.get("name"),
       "Client email": data.get("email"),
-      "Mobile number": data.get("mobile"),
+      "Mobile number": mobileDigits.startsWith("639") ? `+${mobileDigits}` : mobileDigits,
       "Model of interest": data.get("model"),
       "Request type": data.get("intent"),
       "Client message": data.get("message") || "No additional message",
@@ -129,6 +147,7 @@ export default function Showroom() {
       });
       const result = await response.json();
       if (!response.ok || result.success === false) throw new Error("The request could not be sent.");
+      localStorage.setItem("bydLastQuotationRequest", String(Date.now()));
       setSubmitted(true);
       form.reset();
       setSelected(null);
@@ -198,7 +217,8 @@ export default function Showroom() {
           {submitted ? <div className="success"><span>✓</span><h3>Quotation request sent.</h3><p>Thank you. A Certified Sales Consultant will review your information and contact you soon.</p><button type="button" className="button primary" onClick={() => setSubmitted(false)}>Send another request</button></div> : <>
             <label>Full name<input name="name" required placeholder="Your name" /></label>
             <label>Email address<input name="email" type="email" required placeholder="you@email.com" /></label>
-            <label>Mobile number<input name="mobile" required inputMode="tel" placeholder="09XX XXX XXXX" /></label>
+            <label>Mobile number<input name="mobile" required inputMode="tel" placeholder="09XX XXX XXXX" title="Enter a Philippine mobile number beginning with 09 or +639" /></label>
+            <label className="bot-field" aria-hidden="true">Company website<input name="company_website" tabIndex={-1} autoComplete="off" /></label>
             <label>Model of interest<select name="model" value={selected?.name ?? ""} onChange={(e) => setSelected(vehicles.find(v => v.name === e.target.value) ?? null)} required><option value="" disabled>Select a BYD model</option>{vehicles.map(v => <option key={v.name} value={v.name}>{v.name}</option>)}</select></label>
             <label>How can I help?<select name="intent" required defaultValue="proposal"><option value="proposal">Send me a proposal</option><option value="test-drive">Book a test drive</option><option value="financing">Discuss financing</option><option value="trade-in">Ask about trade-in</option></select></label>
             <label className="full-width">Anything I should know?<textarea name="message" placeholder="Preferred variant, budget, purchase timeframe, or questions (optional)" /></label>
