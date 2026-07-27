@@ -51,6 +51,22 @@ const vehicles: Vehicle[] = [
   { name: "BYD Tang", type: "Full Electric", body: "Performance SUV", price: 3491000, range: "530 km", rangeLabel: "EV range (NEDC)", power: "517 Ps", seats: "7 seats", image: "https://cdn.prod.website-files.com/679b275acc89c99e5cf128aa/67ab4334ed3aeeaf54e27292_BYD-Tang-HomePageBanner-1440x900.webp", bestFor: "Seven-seat electric performance", highlights: ["Dual-motor all-wheel drive", "Premium seven-seat cabin", "Advanced safety suite"], variants: [{ name: "Performance AWD", price: 3491000 }], source: "https://bydcarsphilippines.com/vehicles/byd-tang" },
 ];
 
+const torqueByVehicle: Record<string, string> = {
+  "BYD Seagull": "135 Nm",
+  "BYD Seal 5 DM-i": "316 Nm",
+  "BYD Sealion 5 DM-i": "300 Nm",
+  "BYD eMAX 7": "310 Nm",
+  "BYD Sealion 6 DM-i": "325 Nm",
+  "BYD Atto 3": "310 Nm",
+  "BYD Tang DM-i": "315 Nm",
+  "BYD Shark 6 DMO": "650 Nm",
+  "BYD Sealion 7": "690 Nm",
+  "BYD Seal": "672 Nm",
+  "BYD eMAX 9 DM-i": "315 Nm",
+  "BYD Han": "700 Nm",
+  "BYD Tang": "700 Nm",
+};
+
 const peso = new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP", maximumFractionDigits: 0 });
 
 export default function Showroom() {
@@ -128,7 +144,7 @@ export default function Showroom() {
               <div className="card-image"><img src={vehicle.image} alt={`${vehicle.name} ${vehicle.body}`} loading={index < 4 ? "eager" : "lazy"} /><span className={`power-badge ${vehicle.type === "Full Electric" ? "electric" : "hybrid"}`}>{vehicle.type}</span></div>
               <div className="card-body"><div className="card-title"><div><p>{vehicle.body}</p><h3>{vehicle.name}</h3></div><span className="card-index">{String(vehicles.indexOf(vehicle) + 1).padStart(2, "0")}</span></div>
                 <p className="best-for">Best for: <strong>{vehicle.bestFor}</strong></p>
-                <div className="spec-row"><div><strong>{vehicle.range}</strong><span>{vehicle.rangeLabel}</span></div><div><strong>{vehicle.power}</strong><span>power</span></div><div><strong>{vehicle.seats}</strong><span>capacity</span></div></div>
+                <div className="spec-row"><div><strong>{vehicle.range}</strong><span>{vehicle.rangeLabel}</span></div><div><strong>{vehicle.power}</strong><span>power</span></div><div><strong>{torqueByVehicle[vehicle.name]}</strong><span>torque</span></div><div><strong>{vehicle.seats}</strong><span>capacity</span></div></div>
                 <div className="variant-list"><span>Available variants</span>{vehicle.variants.map(variant => <div key={variant.name}><strong>{variant.name}</strong><b>{peso.format(variant.price)}</b></div>)}</div>
                 <div className="price-row"><span>Starts at <strong>{peso.format(vehicle.price)}</strong></span><button onClick={() => request(vehicle)}>Get proposal <span>→</span></button></div>
                 <details><summary>See customer highlights</summary><ul>{vehicle.highlights.map(item => <li key={item}>{item}</li>)}</ul><a href={vehicle.source} target="_blank" rel="noreferrer">View official BYD source ↗</a></details>
