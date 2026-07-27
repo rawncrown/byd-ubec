@@ -55,16 +55,16 @@ export default function Showroom() {
   return (
     <main>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="BYD IL Corso home"><span>BYD</span><small>IL CORSO · CEBU</small></a>
+        <a className="brand" href="#top" aria-label="BYD Cebu home"><span>BYD</span><small>CEBU</small></a>
         <nav aria-label="Main navigation"><a href="#models">Models</a><a href="#guide">Why BYD</a><a href="#proposal">Get a proposal</a></nav>
-        <a className="header-cta" href="#proposal">Talk to Ron <span>↗</span></a>
+        <a className="header-cta" href="#proposal">Talk to a Consultant <span>↗</span></a>
       </header>
 
       <section className="hero" id="top">
         <div className="hero-copy">
           <p className="eyebrow">Your BYD journey, made personal.</p>
           <h1>Find the BYD that<br /><em>fits your life.</em></h1>
-          <p className="hero-intro">Explore the official Philippine lineup, understand the essentials, and get a personalized proposal from Ron Corona at BYD IL Corso.</p>
+          <p className="hero-intro">Explore the official Philippine lineup, understand the essentials, and get a personalized proposal from a Certified Sales Consultant at BYD Cebu.</p>
           <div className="hero-actions"><a className="button primary" href="#models">Explore 13 models</a><a className="text-link" href="#proposal">Request a proposal <span>→</span></a></div>
           <div className="trust-row"><span><b>01</b> Verified PH lineup</span><span><b>02</b> Clear, useful specs</span><span><b>03</b> Personal assistance</span></div>
         </div>
@@ -104,9 +104,9 @@ export default function Showroom() {
       </section>
 
       <section className="proposal" id="proposal">
-        <div className="proposal-intro"><p className="eyebrow">The next step</p><h2>Your personalized<br />BYD proposal.</h2><p>Tell me what you’re considering. I’ll help verify availability, explain financing options, and prepare a clear quotation for you.</p><div className="advisor-card"><div className="avatar">RC</div><div><strong>Ron Corona</strong><span>Sales Consultant · BYD IL Corso</span><small>Personal assistance from inquiry to delivery</small></div></div></div>
+        <div className="proposal-intro"><p className="eyebrow">The next step</p><h2>Your personalized<br />BYD proposal.</h2><p>Tell me what you’re considering. I’ll help verify availability, explain financing options, and prepare a clear quotation for you.</p><div className="advisor-card"><div className="avatar">BYD</div><div><strong>Certified Sales Consultant</strong><span>BYD Cebu</span><small>Personal assistance from inquiry to delivery</small></div></div></div>
         <form className="lead-form" onSubmit={submit}>
-          {submitted ? <div className="success"><span>✓</span><h3>Your request is ready.</h3><p>The website inquiry flow is working. Direct lead delivery will be connected to Ron’s Proposal Generator in the next setup step.</p><button type="button" className="button primary" onClick={() => setSubmitted(false)}>Send another request</button></div> : <>
+          {submitted ? <div className="success"><span>✓</span><h3>Your request is ready.</h3><p>The website inquiry flow is working. Direct lead delivery will be connected to the Proposal Generator in the next setup step.</p><button type="button" className="button primary" onClick={() => setSubmitted(false)}>Send another request</button></div> : <>
             <label>Full name<input name="name" required placeholder="Your name" /></label>
             <label>Mobile number<input name="mobile" required inputMode="tel" placeholder="09XX XXX XXXX" /></label>
             <label>Model of interest<select name="model" value={selected?.name ?? ""} onChange={(e) => setSelected(vehicles.find(v => v.name === e.target.value) ?? null)} required><option value="" disabled>Select a BYD model</option>{vehicles.map(v => <option key={v.name} value={v.name}>{v.name}</option>)}</select></label>
@@ -119,7 +119,7 @@ export default function Showroom() {
         </form>
       </section>
 
-      <footer><div className="brand footer-brand"><span>BYD</span><small>IL CORSO · CEBU</small></div><p>Independent sales consultant website for customer assistance at BYD IL Corso. Vehicle information is sourced from BYD Cars Philippines and may change without notice.</p><div><a href="https://bydcarsphilippines.com" target="_blank" rel="noreferrer">Official BYD Philippines ↗</a><a href="#top">Back to top ↑</a></div></footer>
+      <footer><div className="brand footer-brand"><span>BYD</span><small>CEBU</small></div><p>Certified Sales Consultant website for customer assistance at BYD Cebu. Vehicle information is sourced from BYD Cars Philippines and may change without notice.</p><div><a href="https://bydcarsphilippines.com" target="_blank" rel="noreferrer">Official BYD Philippines ↗</a><a href="#top">Back to top ↑</a></div></footer>
     </main>
   );
 }
