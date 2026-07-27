@@ -1,0 +1,22 @@
+{
+  "heroSlides": [
+    {
+      "eyebrow": "Coming soon to BYD Cebu",
+      "title": "Meet the all-new",
+      "accent": "BYD ATTO 2.",
+      "description": "A compact electric SUV designed for effortless city driving, smart everyday comfort and the confidence of BYD Blade Battery technology.",
+      "model": "BYD ATTO 2",
+      "detail": "Compact electric SUV · Upcoming launch",
+      "image": "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/atto2.webp"
+    },
+    {
+      "eyebrow": "Coming soon to BYD Cebu",
+      "title": "Discover the new",
+      "accent": "BYD SEAL 5.",
+      "description": "The next generation of BYD's practical Super DM-i sedan—made for efficient daily journeys and comfortable long-distance travel.",
+      "model": "New BYD SEAL 5 DM-i",
+      "detail": "Essential & Dynamic · Upcoming launch",
+      "image": "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/new_seal5.webp"
+    }
+  ]
+}
