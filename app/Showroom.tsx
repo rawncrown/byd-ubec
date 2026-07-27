@@ -201,7 +201,7 @@ export default function Showroom() {
 
       <section className="proposal" id="proposal">
         <div className="proposal-intro"><p className="eyebrow">The next step</p><h2>Your personalized<br />BYD proposal.</h2><p>Tell me what you’re considering. I’ll help verify availability, explain financing options, and prepare a clear quotation for you.</p><div className="advisor-card"><div className="avatar">BYD</div><div><strong>Certified Sales Consultant</strong><span>BYD Cebu</span><small>Personal assistance from inquiry to delivery</small></div></div></div>
-        <form className="lead-form" action="https://formsubmit.co/8dbadd2a6f94379b23276fab6beac100e" method="POST" onSubmit={submit}>
+        <form className="lead-form" action="https://formsubmit.co/roncorona.1029@gmail.com" method="POST" onSubmit={submit}>
           {submitted ? <div className="success"><span>✓</span><h3>Quotation request sent.</h3><p>Thank you. A Certified Sales Consultant will review your information and contact you soon.</p><button type="button" className="button primary" onClick={() => setSubmitted(false)}>Send another request</button></div> : <>
             <input type="hidden" name="_next" value="" />
             <input type="hidden" name="_url" value="" />
