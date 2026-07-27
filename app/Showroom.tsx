@@ -109,13 +109,13 @@ export default function Showroom() {
     document.getElementById("proposal")?.scrollIntoView({ behavior: "smooth" });
   }
 
-  function submit(e: FormEvent<HTMLFormElement>) {
+  async function submit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     setSubmitting(true);
     setSubmitError("");
     const form = e.currentTarget;
     const data = new FormData(form);
     if (String(data.get("_honey") ?? "").trim()) {
-      e.preventDefault();
       setSubmitted(true);
       setSubmitting(false);
       return;
@@ -123,27 +123,46 @@ export default function Showroom() {
     const mobileDigits = String(data.get("mobile") ?? "").replace(/\D/g, "");
     const validMobile = (mobileDigits.length === 11 && mobileDigits.startsWith("09")) || (mobileDigits.length === 12 && mobileDigits.startsWith("639"));
     if (!validMobile) {
-      e.preventDefault();
       setSubmitError("Please enter a valid Philippine mobile number, such as 0917 123 4567.");
       setSubmitting(false);
       return;
     }
     const lastSubmission = Number(localStorage.getItem("bydLastQuotationRequest") ?? 0);
     if (Date.now() - lastSubmission < 60_000) {
-      e.preventDefault();
       setSubmitError("A request was just sent from this device. Please wait one minute before trying again.");
       setSubmitting(false);
       return;
     }
-    const mobileInput = form.elements.namedItem("mobile") as HTMLInputElement;
-    const nextInput = form.elements.namedItem("_next") as HTMLInputElement;
-    const urlInput = form.elements.namedItem("_url") as HTMLInputElement;
-    const subjectInput = form.elements.namedItem("_subject") as HTMLInputElement;
-    mobileInput.value = mobileDigits.startsWith("639") ? `+${mobileDigits}` : mobileDigits;
-    nextInput.value = `${window.location.origin}${window.location.pathname}?submitted=1#proposal`;
-    urlInput.value = `${window.location.origin}${window.location.pathname}#proposal`;
-    subjectInput.value = `New BYD Cebu quotation request — ${data.get("model")}`;
-    localStorage.setItem("bydLastQuotationRequest", String(Date.now()));
+    const payload = {
+      "Full name": data.get("name"),
+      "Client email": data.get("email"),
+      "Mobile number": mobileDigits.startsWith("639") ? `+${mobileDigits}` : mobileDigits,
+      "Model of interest": data.get("model"),
+      "Request type": data.get("intent"),
+      "Client message": data.get("message") || "No additional message",
+      _replyto: data.get("email"),
+      _subject: `New BYD Cebu quotation request — ${data.get("model")}`,
+      _template: "table",
+      _url: `${window.location.origin}${window.location.pathname}#proposal`,
+      _honey: "",
+    };
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/roncorona.1029@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+      if (!response.ok || result.success === false || result.success === "false") throw new Error("The request could not be sent.");
+      localStorage.setItem("bydLastQuotationRequest", String(Date.now()));
+      setSubmitted(true);
+      form.reset();
+      setSelected(null);
+    } catch {
+      setSubmitError("We couldn’t send your request right now. Please check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -201,12 +220,8 @@ export default function Showroom() {
 
       <section className="proposal" id="proposal">
         <div className="proposal-intro"><p className="eyebrow">The next step</p><h2>Your personalized<br />BYD proposal.</h2><p>Tell me what you’re considering. I’ll help verify availability, explain financing options, and prepare a clear quotation for you.</p><div className="advisor-card"><div className="avatar">BYD</div><div><strong>Certified Sales Consultant</strong><span>BYD Cebu</span><small>Personal assistance from inquiry to delivery</small></div></div></div>
-        <form className="lead-form" action="https://formsubmit.co/roncorona.1029@gmail.com" method="POST" onSubmit={submit}>
+        <form className="lead-form" onSubmit={submit}>
           {submitted ? <div className="success"><span>✓</span><h3>Quotation request sent.</h3><p>Thank you. A Certified Sales Consultant will review your information and contact you soon.</p><button type="button" className="button primary" onClick={() => setSubmitted(false)}>Send another request</button></div> : <>
-            <input type="hidden" name="_next" value="" />
-            <input type="hidden" name="_url" value="" />
-            <input type="hidden" name="_subject" value="New BYD Cebu quotation request" />
-            <input type="hidden" name="_template" value="table" />
             <label>Full name<input name="name" required placeholder="Your name" /></label>
             <label>Email address<input name="email" type="email" required placeholder="you@email.com" /></label>
             <label>Mobile number<input name="mobile" required inputMode="tel" placeholder="09XX XXX XXXX" title="Enter a Philippine mobile number beginning with 09 or +639" /></label>
