@@ -73,6 +73,8 @@ export default function Showroom() {
   const [filter, setFilter] = useState("All");
   const [selected, setSelected] = useState<Vehicle | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [heroSlides, setHeroSlides] = useState(defaultHeroSlides);
   const [heroIndex, setHeroIndex] = useState(0);
   const filtered = useMemo(() => filter === "All" ? vehicles : vehicles.filter((v) => v.type === filter), [filter]);
@@ -102,9 +104,39 @@ export default function Showroom() {
     document.getElementById("proposal")?.scrollIntoView({ behavior: "smooth" });
   }
 
-  function submit(e: FormEvent<HTMLFormElement>) {
+  async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setSubmitError("");
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const payload = {
+      "Full name": data.get("name"),
+      "Client email": data.get("email"),
+      "Mobile number": data.get("mobile"),
+      "Model of interest": data.get("model"),
+      "Request type": data.get("intent"),
+      "Client message": data.get("message") || "No additional message",
+      _replyto: data.get("email"),
+      _subject: `New BYD Cebu quotation request — ${data.get("model")}`,
+      _template: "table",
+    };
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/roncorona.1029@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+      if (!response.ok || result.success === false) throw new Error("The request could not be sent.");
+      setSubmitted(true);
+      form.reset();
+      setSelected(null);
+    } catch {
+      setSubmitError("We couldn’t send your request right now. Please check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -163,14 +195,16 @@ export default function Showroom() {
       <section className="proposal" id="proposal">
         <div className="proposal-intro"><p className="eyebrow">The next step</p><h2>Your personalized<br />BYD proposal.</h2><p>Tell me what you’re considering. I’ll help verify availability, explain financing options, and prepare a clear quotation for you.</p><div className="advisor-card"><div className="avatar">BYD</div><div><strong>Certified Sales Consultant</strong><span>BYD Cebu</span><small>Personal assistance from inquiry to delivery</small></div></div></div>
         <form className="lead-form" onSubmit={submit}>
-          {submitted ? <div className="success"><span>✓</span><h3>Your request is ready.</h3><p>The website inquiry flow is working. Direct lead delivery will be connected to the Proposal Generator in the next setup step.</p><button type="button" className="button primary" onClick={() => setSubmitted(false)}>Send another request</button></div> : <>
+          {submitted ? <div className="success"><span>✓</span><h3>Quotation request sent.</h3><p>Thank you. A Certified Sales Consultant will review your information and contact you soon.</p><button type="button" className="button primary" onClick={() => setSubmitted(false)}>Send another request</button></div> : <>
             <label>Full name<input name="name" required placeholder="Your name" /></label>
+            <label>Email address<input name="email" type="email" required placeholder="you@email.com" /></label>
             <label>Mobile number<input name="mobile" required inputMode="tel" placeholder="09XX XXX XXXX" /></label>
             <label>Model of interest<select name="model" value={selected?.name ?? ""} onChange={(e) => setSelected(vehicles.find(v => v.name === e.target.value) ?? null)} required><option value="" disabled>Select a BYD model</option>{vehicles.map(v => <option key={v.name} value={v.name}>{v.name}</option>)}</select></label>
             <label>How can I help?<select name="intent" required defaultValue="proposal"><option value="proposal">Send me a proposal</option><option value="test-drive">Book a test drive</option><option value="financing">Discuss financing</option><option value="trade-in">Ask about trade-in</option></select></label>
             <label className="full-width">Anything I should know?<textarea name="message" placeholder="Preferred variant, budget, purchase timeframe, or questions (optional)" /></label>
             <label className="consent full-width"><input type="checkbox" required /> <span>I agree to be contacted about my inquiry and acknowledge that my information will be handled according to the privacy notice.</span></label>
-            <button className="submit-button" type="submit">Request my proposal <span>↗</span></button>
+            <button className="submit-button" type="submit" disabled={submitting}>{submitting ? "Sending your request…" : "Request my proposal"} <span>↗</span></button>
+            {submitError && <p className="form-error" role="alert">{submitError}</p>}
             <p className="form-note">No obligation. Final price, availability and financing are subject to verification.</p>
           </>}
         </form>
