@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "BYD Cebu | Certified Sales Consultant",
   description:
     "A simpler way to explore BYD vehicles and request a personalized proposal in Cebu.",
+  icons: {
+    icon: [{ url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"}/favicon.svg`, type: "image/svg+xml" }],
+  },
   openGraph: {
     title: "Find the BYD that fits your life.",
     description: "Explore the Philippine BYD range with personal assistance from a Certified Sales Consultant at BYD Cebu.",
