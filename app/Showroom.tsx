@@ -140,7 +140,7 @@ export default function Showroom() {
       _template: "table",
     };
     try {
-      const response = await fetch("https://formsubmit.co/ajax/roncorona.1029@gmail.com", {
+      const response = await fetch("https://formsubmit.co/ajax/8dbadd2a6f94379b23276fab6beac100e", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(payload),
