@@ -21,7 +21,7 @@
       "description": "The new 5th-generation Super DM-i sedan brings remarkable efficiency, generous space and everyday comfort within easier reach.",
       "model": "New BYD SEAL 5 DM-i",
       "detail": "Essential and Dynamic · Now launched",
-      "image": "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/new_seal5.webp",
+      "image": "https://cdn.prod.website-files.com/679b275acc89c99e5cf128aa/6a6723782b116c94cb4403ad_New%20BYD%20Seal%205%20DM-i%20Dynamic.webp",
       "launchPrices": [
         { "label": "Essential", "intro": 958000, "srp": 1008000 },
         { "label": "Dynamic", "intro": 1058000, "srp": 1108000 }
