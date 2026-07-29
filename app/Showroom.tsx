@@ -10,13 +10,14 @@ type HeroSlide = {
   model: string;
   detail: string;
   image: string;
+  launchPrices?: { label: string; intro: number; srp: number }[];
 };
 
 type SiteContent = { heroSlides: HeroSlide[] };
 
 const defaultHeroSlides: HeroSlide[] = [
-  { eyebrow: "Coming soon to BYD Cebu", title: "Discover the all-new", accent: "BYD ATTO 2.", description: "A compact electric SUV designed for effortless city driving, smart everyday comfort and the confidence of BYD Blade Battery technology.", model: "BYD ATTO 2", detail: "Compact electric SUV · Upcoming launch", image: "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/atto2.webp" },
-  { eyebrow: "Coming soon to BYD Cebu", title: "Discover the all-new", accent: "BYD SEAL 5.", description: "The next generation of BYD's practical Super DM-i sedan—made for efficient daily journeys and comfortable long-distance travel.", model: "New BYD SEAL 5 DM-i", detail: "Essential & Dynamic · Upcoming launch", image: "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/new_seal5.webp" },
+  { eyebrow: "Officially launched in the Philippines", title: "Discover the all-new", accent: "BYD ATTO 2.", description: "Choose pure electric or Super DM-i efficiency in a smart, city-friendly compact SUV. Request a proposal to confirm Cebu availability.", model: "BYD ATTO 2", detail: "EV and Super DM-i · Now launched", image: "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/atto2.webp", launchPrices: [{ label: "EV", intro: 1348000, srp: 1398000 }, { label: "DM-i Dynamic", intro: 1058000, srp: 1108000 }, { label: "DM-i Premium", intro: 1268000, srp: 1318000 }] },
+  { eyebrow: "Officially launched in the Philippines", title: "Discover the all-new", accent: "BYD SEAL 5.", description: "The new 5th-generation Super DM-i sedan brings remarkable efficiency, generous space and everyday comfort within easier reach.", model: "New BYD SEAL 5 DM-i", detail: "Essential and Dynamic · Now launched", image: "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/new_seal5.webp", launchPrices: [{ label: "Essential", intro: 958000, srp: 1008000 }, { label: "Dynamic", intro: 1058000, srp: 1108000 }] },
 ];
 
 type Vehicle = {
@@ -31,13 +32,16 @@ type Vehicle = {
   image: string;
   bestFor: string;
   highlights: string[];
-  variants: { name: string; price: number }[];
+  variants: { name: string; price: number; srp?: number }[];
+  promoUntil?: string;
   source: string;
 };
 
 const vehicles: Vehicle[] = [
   { name: "BYD Seagull", type: "Full Electric", body: "Mini Hatchback", price: 1028000, range: "300 km", rangeLabel: "EV range (NEDC)", power: "75 Ps", seats: "5 seats", image: "https://cdn.prod.website-files.com/679b275acc89c99e5cf128aa/67ab4f88ebea20adf205cccc_BYD-Seagull-HomePageBanner-1440x900.webp", bestFor: "First EV & city driving", highlights: ["Compact and easy to park", "Blade Battery", "Smart, connected cabin"], variants: [{ name: "Premium", price: 1028000 }], source: "https://bydcarsphilippines.com/vehicles/byd-seagull" },
-  { name: "BYD Seal 5 DM-i", type: "Super DM-i", body: "Compact Sedan", price: 1018000, range: "1,175 km", rangeLabel: "combined range", power: "179 Ps", seats: "5 seats", image: "https://cdn.prod.website-files.com/679b275acc89c99e5cf128aa/67ab598f1fb310631d02fd4d_BYD-Seal5-DMi-HomePageBanner-1440x900.webp", bestFor: "Maximum value & long drives", highlights: ["Up to 50 km pure EV driving", "12.8-inch rotating screen", "Generous 450 L trunk"], variants: [{ name: "Dynamic", price: 1018000 }, { name: "Premium", price: 1258000 }], source: "https://bydcarsphilippines.com/vehicles/byd-seal-5-dm-i-dynamic" },
+  { name: "BYD ATTO 2 EV", type: "Full Electric", body: "Compact SUV", price: 1348000, range: "380 km", rangeLabel: "EV range (NEDC)", power: "177 Ps", seats: "5 seats", image: "https://cdn.prod.website-files.com/679b275acc89c99e5cf128aa/6a67231bd8c3884256216c97_BYD%20Atto%202%20EV%20OG%20Image.webp", bestFor: "Smart, city-friendly EV driving", highlights: ["360° View Camera with See-Through Mode", "Vehicle-to-Load capability", "Blade Battery and e-Platform 3.0"], variants: [{ name: "EV", price: 1348000, srp: 1398000 }], promoUntil: "August 31, 2026", source: "https://bydcarsphilippines.com/vehicles/byd-atto-2-ev" },
+  { name: "BYD ATTO 2 DM-i", type: "Super DM-i", body: "Compact SUV", price: 1058000, range: "Over 1,300 km", rangeLabel: "combined range*", power: "165 Ps", seats: "5 seats", image: "https://cdn.prod.website-files.com/679b275acc89c99e5cf128aa/6a671ba9307b5ec0b6b6a5ec_BYD%20Atto%202%20DM-i%20Dynamic.webp", bestFor: "Affordable electric-first flexibility", highlights: ["Up to 45 km pure EV driving", "Super DM-i long-range efficiency", "Premium adds DiPilot assistance"], variants: [{ name: "Dynamic", price: 1058000, srp: 1108000 }, { name: "Premium", price: 1268000, srp: 1318000 }], promoUntil: "August 31, 2026", source: "https://bydcarsphilippines.com/vehicles/byd-atto-2-dm-i-dynamic" },
+  { name: "New BYD SEAL 5 DM-i", type: "Super DM-i", body: "Compact Sedan", price: 958000, range: "Over 2,100 km", rangeLabel: "extended range*", power: "163 Ps", seats: "5 seats", image: "https://cdn.prod.website-files.com/679b275acc89c99e5cf128aa/6a6723782b116c94cb4403ad_New%20BYD%20Seal%205%20DM-i%20Dynamic.webp", bestFor: "Exceptional value & long journeys", highlights: ["Up to 55 km pure EV driving", "5th-generation Super DM-i", "Generous 522-liter trunk"], variants: [{ name: "Essential", price: 958000, srp: 1008000 }, { name: "Dynamic", price: 1058000, srp: 1108000 }], promoUntil: "August 31, 2026", source: "https://bydcarsphilippines.com/vehicles/new-byd-seal-5-dm-i-dynamic" },
   { name: "BYD Sealion 5 DM-i", type: "Super DM-i", body: "Compact SUV", price: 1338000, range: "1,001 km", rangeLabel: "combined range", power: "197 Ps", seats: "5 seats", image: "https://cdn.prod.website-files.com/679b275acc89c99e5cf128aa/69dce0d3385a98fab9775253_684fb8bf016df4905008594a_BYD-Sealion5-DMi-HomePageBanner-1440x900%20copy.avif", bestFor: "Practical family SUV", highlights: ["Up to 71 km pure EV driving", "Roomy SUV cabin", "360-degree camera"], variants: [{ name: "Dynamic", price: 1338000 }], source: "https://bydcarsphilippines.com/vehicles/byd-sealion-5-dm-i" },
   { name: "BYD eMAX 7", type: "Full Electric", body: "MPV", price: 1618000, range: "420 km", rangeLabel: "EV range (NEDC)", power: "163 Ps", seats: "6 or 7 seats", image: "https://cdn.prod.website-files.com/679b275acc89c99e5cf128aa/67f3b0881ff49accc6102e7b_BYD-eMAX7-HomePageBanner-1440x900.webp", bestFor: "Modern family space", highlights: ["Six- or seven-seat variants", "Vehicle-to-load capability", "DiPilot driver assistance"], variants: [{ name: "Standard", price: 1618000 }, { name: "Superior Captain", price: 1838000 }], source: "https://bydcarsphilippines.com/vehicles/byd-emax-7-standard" },
   { name: "BYD Sealion 6 DM-i", type: "Super DM-i", body: "Compact SUV", price: 1668000, range: "1,100 km", rangeLabel: "combined range", power: "217 Ps", seats: "5 seats", image: "https://cdn.prod.website-files.com/679b275acc89c99e5cf128aa/69dcdf1f9a9f30f23464afa4_6879e8e362008e7349e43492_BYD-Sealion6-Dmi-HomePageBanner-StoneGrey-1440x900.avif", bestFor: "Premium everyday flexibility", highlights: ["Up to 105 km pure EV driving", "15.6-inch rotating screen", "Advanced driver assistance"], variants: [{ name: "Dynamic", price: 1668000 }], source: "https://bydcarsphilippines.com/vehicles/byd-sealion-6-dm-i" },
@@ -53,7 +57,9 @@ const vehicles: Vehicle[] = [
 
 const torqueByVehicle: Record<string, string> = {
   "BYD Seagull": "135 Nm",
-  "BYD Seal 5 DM-i": "316 Nm",
+  "BYD ATTO 2 EV": "290 Nm",
+  "BYD ATTO 2 DM-i": "300 Nm",
+  "New BYD SEAL 5 DM-i": "210 Nm",
   "BYD Sealion 5 DM-i": "300 Nm",
   "BYD eMAX 7": "310 Nm",
   "BYD Sealion 6 DM-i": "325 Nm",
@@ -178,12 +184,17 @@ export default function Showroom() {
           <p className="eyebrow">{hero.eyebrow}</p>
           <h1><span>{hero.title}</span><br /><em>{hero.accent}</em></h1>
           <p className="hero-intro">{hero.description}</p>
-          <div className="hero-actions"><a className="button primary" href="#models">Explore 13 models</a><a className="text-link" href="#proposal">Request a proposal <span>→</span></a></div>
+          {hero.launchPrices && <div className="launch-offer">
+            <div className="launch-offer-head"><strong>Launch pricing</strong><span>Until Aug 31</span></div>
+            {hero.launchPrices.map(item => <div className="launch-price" key={item.label}><span>{item.label}</span><strong>{peso.format(item.intro)}</strong><del>{peso.format(item.srp)} SRP</del></div>)}
+            <small>Regular SRP applies beginning September 1, 2026.</small>
+          </div>}
+          <div className="hero-actions"><a className="button primary" href="#models">Explore {vehicles.length} models</a><a className="text-link" href="#proposal">Request a proposal <span>→</span></a></div>
           <div className="trust-row"><span><b>01</b> Verified PH lineup</span><span><b>02</b> Clear, useful specs</span><span><b>03</b> Personal assistance</span></div>
         </div>
         <div className="hero-visual">
           <img key={hero.image} src={hero.image} alt={`${hero.model} launch preview`} />
-          <div className="hero-model"><span>Launch preview</span><strong>{hero.model}</strong><small>{hero.detail}</small></div>
+          <div className="hero-model"><span>Now launched</span><strong>{hero.model}</strong><small>{hero.detail}</small></div>
           <div className="hero-dots" aria-label="Choose launch preview">{heroSlides.map((slide, index) => <button type="button" aria-label={`Show ${slide.model}`} className={heroIndex === index ? "active" : ""} onClick={() => setHeroIndex(index)} key={`${slide.model}-${index}`} />)}</div>
           <div className="hero-number">0{heroIndex + 1}</div>
         </div>
@@ -199,18 +210,18 @@ export default function Showroom() {
         <div className="vehicle-grid">
           {filtered.map((vehicle, index) => (
             <article className="vehicle-card" key={vehicle.name}>
-              <div className="card-image"><img src={vehicle.image} alt={`${vehicle.name} ${vehicle.body}`} loading={index < 4 ? "eager" : "lazy"} /><span className={`power-badge ${vehicle.type === "Full Electric" ? "electric" : "hybrid"}`}>{vehicle.type}</span></div>
+              <div className="card-image"><img src={vehicle.image} alt={`${vehicle.name} ${vehicle.body}`} loading={index < 4 ? "eager" : "lazy"} /><span className={`power-badge ${vehicle.type === "Full Electric" ? "electric" : "hybrid"}`}>{vehicle.type}</span>{vehicle.promoUntil && <span className="offer-badge">Launch offer</span>}</div>
               <div className="card-body"><div className="card-title"><div><p>{vehicle.body}</p><h3>{vehicle.name}</h3></div><span className="card-index">{String(vehicles.indexOf(vehicle) + 1).padStart(2, "0")}</span></div>
                 <p className="best-for">Best for: <strong>{vehicle.bestFor}</strong></p>
                 <div className="spec-row"><div><strong>{vehicle.range}</strong><span>{vehicle.rangeLabel}</span></div><div><strong>{vehicle.power}</strong><span>power</span></div><div><strong>{torqueByVehicle[vehicle.name]}</strong><span>torque</span></div><div><strong>{vehicle.seats}</strong><span>capacity</span></div></div>
-                <div className="variant-list"><span>Available variants</span>{vehicle.variants.map(variant => <div key={variant.name}><strong>{variant.name}</strong><b>{peso.format(variant.price)}</b></div>)}</div>
-                <div className="price-row"><span>Starts at <strong>{peso.format(vehicle.price)}</strong></span><button onClick={() => request(vehicle)}>Get proposal <span>→</span></button></div>
+                <div className="variant-list"><span>{vehicle.promoUntil ? "Introductory prices" : "Available variants"}</span>{vehicle.variants.map(variant => <div key={variant.name}><strong>{variant.name}</strong><span className="variant-price"><b>{peso.format(variant.price)}</b>{variant.srp && <del>{peso.format(variant.srp)} SRP</del>}</span></div>)}</div>
+                <div className="price-row"><span>{vehicle.promoUntil ? "Intro price until Aug 31" : "Starts at"} <strong>{peso.format(vehicle.price)}</strong></span><button onClick={() => request(vehicle)}>Get proposal <span>→</span></button></div>
                 <details><summary>See customer highlights</summary><ul>{vehicle.highlights.map(item => <li key={item}>{item}</li>)}</ul><a href={vehicle.source} target="_blank" rel="noreferrer">View official BYD source ↗</a></details>
               </div>
             </article>
           ))}
         </div>
-        <p className="price-note">Cebu suggested retail prices shown are based on the July 2026 BYD Cebu proposal list. Prices, specifications, colors and stock may change without prior notice. Please request a proposal to confirm the latest offer.</p>
+        <p className="price-note"><strong>Launch offer:</strong> Introductory prices for the BYD ATTO 2 EV, ATTO 2 DM-i and New SEAL 5 DM-i are valid until August 31, 2026. Regular SRP applies beginning September 1, 2026. Other Cebu prices are based on the July 2026 proposal list. Prices, specifications, colors and stock may change without prior notice.</p>
       </section>
 
       <section className="guide" id="guide">

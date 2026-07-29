@@ -1,22 +1,31 @@
 {
   "heroSlides": [
     {
-      "eyebrow": "Coming soon to BYD Cebu",
+      "eyebrow": "Officially launched in the Philippines",
       "title": "Discover the all-new",
       "accent": "BYD ATTO 2.",
-      "description": "A compact electric SUV designed for effortless city driving, smart everyday comfort and the confidence of BYD Blade Battery technology.",
+      "description": "Choose pure electric or Super DM-i efficiency in a smart, city-friendly compact SUV. Request a proposal to confirm Cebu availability.",
       "model": "BYD ATTO 2",
-      "detail": "Compact electric SUV · Upcoming launch",
-      "image": "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/atto2.webp"
+      "detail": "EV and Super DM-i · Now launched",
+      "image": "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/atto2.webp",
+      "launchPrices": [
+        { "label": "EV", "intro": 1348000, "srp": 1398000 },
+        { "label": "DM-i Dynamic", "intro": 1058000, "srp": 1108000 },
+        { "label": "DM-i Premium", "intro": 1268000, "srp": 1318000 }
+      ]
     },
     {
-      "eyebrow": "Coming soon to BYD Cebu",
+      "eyebrow": "Officially launched in the Philippines",
       "title": "Discover the all-new",
       "accent": "BYD SEAL 5.",
-      "description": "The next generation of BYD's practical Super DM-i sedan—made for efficient daily journeys and comfortable long-distance travel.",
+      "description": "The new 5th-generation Super DM-i sedan brings remarkable efficiency, generous space and everyday comfort within easier reach.",
       "model": "New BYD SEAL 5 DM-i",
-      "detail": "Essential & Dynamic · Upcoming launch",
-      "image": "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/new_seal5.webp"
+      "detail": "Essential and Dynamic · Now launched",
+      "image": "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/new_seal5.webp",
+      "launchPrices": [
+        { "label": "Essential", "intro": 958000, "srp": 1008000 },
+        { "label": "Dynamic", "intro": 1058000, "srp": 1108000 }
+      ]
     }
   ]
 }

@@ -10,6 +10,7 @@ type HeroSlide = {
   model: string;
   detail: string;
   image: string;
+  launchPrices?: { label: string; intro: number; srp: number }[];
 };
 
 type SiteContent = { heroSlides: HeroSlide[] };
