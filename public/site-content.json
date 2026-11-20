@@ -1,30 +1,35 @@
 {
   "heroSlides": [
     {
-      "eyebrow": "Officially launched in the Philippines",
-      "title": "Discover the all-new",
-      "accent": "BYD ATTO 2.",
-      "description": "Choose pure electric or Super DM-i efficiency in a smart, city-friendly compact SUV. Request a proposal to confirm Cebu availability.",
-      "model": "BYD ATTO 2",
-      "detail": "EV and Super DM-i · Now launched",
-      "image": "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/atto2.webp",
-      "launchPrices": [
-        { "label": "EV", "intro": 1348000, "srp": 1398000 },
-        { "label": "DM-i Dynamic", "intro": 1058000, "srp": 1108000 },
-        { "label": "DM-i Premium", "intro": 1268000, "srp": 1318000 }
+      "eyebrow": "BYD Thanksgiving Promo · Cash & BPI exclusive",
+      "title": "More reasons to",
+      "accent": "drive electric.",
+      "description": "Enjoy limited November low down payment offers and valuable PMS or insurance packages on selected BYD models.",
+      "model": "BYD ATTO 2 DM-i",
+      "detail": "Thanksgiving offers · Cebu",
+      "image": "https://raw.githubusercontent.com/rawncrown/byd-cebu-proposal-app/main/images/atto2_dmi.webp",
+      "offerTitle": "Featured BPI 20% offers",
+      "offerUntil": "Until Nov 30",
+      "offerLines": [
+        { "label": "ATTO 2 DM-i Dynamic", "value": "₱28,000 low DP", "detail": "Free 1-year PMS" },
+        { "label": "ATTO 2 DM-i Premium", "value": "₱88,000 low DP", "detail": "Free 1-year PMS" },
+        { "label": "ATTO 3 Premium", "value": "₱8,000 low DP", "detail": "Free 5-year PMS" }
       ]
     },
     {
-      "eyebrow": "Officially launched in the Philippines",
-      "title": "Discover the all-new",
-      "accent": "BYD SEAL 5.",
-      "description": "The new 5th-generation Super DM-i sedan brings remarkable efficiency, generous space and everyday comfort within easier reach.",
+      "eyebrow": "BYD Thanksgiving Promo · Cash & BPI exclusive",
+      "title": "This November,",
+      "accent": "go farther.",
+      "description": "Choose the applicable cash or BPI program and receive only the discount and freebie paired with that official offer.",
       "model": "New BYD SEAL 5 DM-i",
-      "detail": "Essential and Dynamic · Now launched",
+      "detail": "Essential and Dynamic · Cebu",
       "image": "https://cdn.prod.website-files.com/679b275acc89c99e5cf128aa/6a66145e38ad0c6d6d1b0d80_BYD%20The%20New%20Seal%205%20DM-i%20.webp",
-      "launchPrices": [
-        { "label": "Essential", "intro": 958000, "srp": 1008000 },
-        { "label": "Dynamic", "intro": 1058000, "srp": 1108000 }
+      "offerTitle": "Featured BPI 20% offers",
+      "offerUntil": "Until Nov 30",
+      "offerLines": [
+        { "label": "New SEAL 5 Essential", "value": "₱18,000 low DP", "detail": "Free 1-year PMS" },
+        { "label": "New SEAL 5 Dynamic", "value": "₱18,000 low DP", "detail": "Free first PMS" },
+        { "label": "SEALION 5 DM-i", "value": "₱38,000 low DP", "detail": "Free 1-year PMS" }
       ]
     }
   ]

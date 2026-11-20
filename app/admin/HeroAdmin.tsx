@@ -10,7 +10,9 @@ type HeroSlide = {
   model: string;
   detail: string;
   image: string;
-  launchPrices?: { label: string; intro: number; srp: number }[];
+  offerTitle?: string;
+  offerUntil?: string;
+  offerLines?: { label: string; value: string; detail: string }[];
 };
 
 type SiteContent = { heroSlides: HeroSlide[] };
@@ -74,7 +76,7 @@ export default function HeroAdmin() {
   return (
     <main className="admin-shell">
       <header className="admin-header"><a className="brand" href={siteRoot()}><span>BYD</span><small>CEBU</small></a><a href={siteRoot()}>View website ↗</a></header>
-      <section className="admin-title"><p className="eyebrow">Website dashboard</p><h1>Homepage hero editor</h1><p>Change the images and launch messages shown at the top of your public website.</p></section>
+      <section className="admin-title"><p className="eyebrow">Website dashboard</p><h1>Homepage hero editor</h1><p>Change the images and campaign messages shown at the top of your public website.</p></section>
       <section className="admin-connect">
         <div><strong>GitHub access key</strong><p>Use a fine-grained token limited to the <b>byd-ubec</b> repository with <b>Contents: Read and write</b>. It stays in this browser tab session.</p></div>
         <input type="password" value={token} onChange={event => setToken(event.target.value)} placeholder="Paste GitHub access key" autoComplete="off" />
